@@ -48,7 +48,7 @@ public class Instrutor {
         FileManager.escreverArquivo(arquivo, this.nome + ";" + this.cpf + ";" + this.salario + ";" + this.expecialidade + ";", true);
     }
 
-    public void mostrarInstrutor(File arquivo){
+    public static void mostrarInstrutor(File arquivo) throws IOException{
         ArrayList<String> resultado = FileManager.lerArquivo(arquivo);
         int posicao =1;
 
@@ -64,10 +64,5 @@ public class Instrutor {
             posicao++;
         }
     }
-
-    public static void deletarInstrutor(File arquivo, int posicao) throws IOException {
-        FileManager.deletarItem(arquivo, posicao);
-    }
-
     
 }

@@ -8,7 +8,7 @@ public class Equipamento {
     private String nome;
     private String funcao_equipamento;
 
-    public Equipamento(String nome, String funcao_equipamento, boolean reservar) {
+    public Equipamento(String nome, String funcao_equipamento) {
         this.nome = nome;
         this.funcao_equipamento = funcao_equipamento;
     }
@@ -34,7 +34,7 @@ public class Equipamento {
         FileManager.escreverArquivo(arquivo, this.nome + ";" + this.funcao_equipamento + ";", true);
     }
 
-    public void mostrarEquipamento(File arquivo){
+    public static void mostrarEquipamento(File arquivo) throws IOException{
         ArrayList<String> resultado = FileManager.lerArquivo(arquivo);
         int posicao =1;
 
@@ -44,14 +44,9 @@ public class Equipamento {
             System.out.println("Posição: " + posicao);
             System.out.println("Nome: " + partes[0]);
             System.out.println("Função do equipamento: " + partes[1]);
-
             System.out.println("=========================================");
             posicao++;
         }
-    }
-
-    public static void deletarInstrutor(File arquivo, int posicao) throws IOException {
-        FileManager.deletarItem(arquivo, posicao);
     }
 
 }

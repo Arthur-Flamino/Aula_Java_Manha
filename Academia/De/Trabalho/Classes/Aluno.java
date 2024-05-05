@@ -3,17 +3,16 @@ package Academia.De.Trabalho.Classes;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-
-import javax.xml.crypto.Data;
+import java.util.Date;
 
 public class Aluno {
     private String nome;
     private String cpf;
     private String endereco;
-    private Data dataNasc;
+    private Date dataNasc;
     private String telefone;
 
-    public Aluno(String nome, String cpf, String endereco, Data dataNasc, String telefone) {
+    public Aluno(String nome, String cpf, String endereco, Date dataNasc, String telefone) {
         this.nome = nome;
         this.cpf = cpf;
         this.endereco = endereco;
@@ -42,10 +41,10 @@ public class Aluno {
         this.endereco = endereco;
     }
 
-    public Data getDataNasc() {
+    public Date getDataNasc() {
         return dataNasc;
     }
-    public void setDataNasc(Data dataNasc) {
+    public void setDataNasc(Date dataNasc) {
         this.dataNasc = dataNasc;
     }
 
@@ -63,7 +62,7 @@ public class Aluno {
         FileManager.escreverArquivo(arquivo, this.nome + ";" + this.cpf + ";" + this.endereco + ";" + this.dataNasc + ";" + this.telefone, true);
     }
 
-    public void mostrarAluno(File arquivo){
+    public static void mostrarAluno(File arquivo) throws IOException{
         ArrayList<String> resultado = FileManager.lerArquivo(arquivo);
         int posicao =1;
 
@@ -81,7 +80,4 @@ public class Aluno {
         }
     }
 
-    public static void deletarAluno(File arquivo, int posicao) throws IOException {
-        FileManager.deletarItem(arquivo, posicao);
-    }
 }
