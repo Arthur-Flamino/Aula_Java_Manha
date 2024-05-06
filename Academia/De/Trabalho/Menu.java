@@ -3,10 +3,7 @@ package Academia.De.Trabalho;
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Scanner;
-
 import Academia.De.Trabalho.Classes.Aluno;
 import Academia.De.Trabalho.Classes.Equipamento;
 import Academia.De.Trabalho.Classes.FileManager;
@@ -21,21 +18,10 @@ public class Menu {
         File caminho = new File("./arquivos");
         FileManager.criarDiretorio(caminho);
 
-        escolhaMenu();
+        menu();
     }
 
-    public static void mostrarMenu(){
-        System.out.println("--------- Menu ---------");
-        System.out.println("[1] Treino");
-        System.out.println("[2] Aluno");
-        System.out.println("[3] Instrutor");
-        System.out.println("[4] Equipamento");
-        System.out.println("[0] Sair");
-        System.out.println("------------------------");
-        System.out.print("\nEscolha uma ação: ");
-    }
-
-    public static void escolhaMenu() throws IOException, ParseException{
+    public static void menu() throws IOException, ParseException{
         Scanner scan = new Scanner(System.in);
 
         File arquivoTreino = new File("./arquivos/treino.txt");
@@ -50,7 +36,14 @@ public class Menu {
         int escolha = 7;
 
         do {
-            mostrarMenu();
+            System.out.println("--------- Menu ---------");
+            System.out.println("[1] Treino");
+            System.out.println("[2] Aluno");
+            System.out.println("[3] Instrutor");
+            System.out.println("[4] Equipamento");
+            System.out.println("[0] Sair");
+            System.out.println("------------------------");
+            System.out.print("\nEscolha uma ação: ");
 
             escolha = Integer.parseInt(scan.nextLine());
             switch (escolha) {
@@ -76,7 +69,7 @@ public class Menu {
         } while (escolha !=0);
     }
 
-    public static void menuAluno(Scanner scan, File arquivoAluno) throws IOException, ParseException{
+    public static void menuAluno(Scanner scan, File arquivoAluno) throws IOException{
         int escolhaAluno;
 
         do {
@@ -104,11 +97,9 @@ public class Menu {
                     String endereco = scan.nextLine();
     
                     System.out.print("(dd/MM/yyyy)nesse formato\nDigite sua Data de nascimento: ");
-                    String data = scan.nextLine();
-                    SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-                    Date dataNasc = formato.parse(data);
+                    String dataNasc = scan.nextLine();
     
-                    System.out.print("(0000-0000)nesse formato\nDigite seu número: ");
+                    System.out.print("(0000-0000)nesse formato\nDigite seu número de telefone: ");
                     String telefone = scan.nextLine();
     
                     Aluno aluno = new Aluno(nome, cpf, endereco, dataNasc, telefone);

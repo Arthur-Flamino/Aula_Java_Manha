@@ -3,16 +3,15 @@ package Academia.De.Trabalho.Classes;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Aluno {
     private String nome;
     private String cpf;
     private String endereco;
-    private Date dataNasc;
+    private String dataNasc;
     private String telefone;
 
-    public Aluno(String nome, String cpf, String endereco, Date dataNasc, String telefone) {
+    public Aluno(String nome, String cpf, String endereco, String dataNasc, String telefone) {
         this.nome = nome;
         this.cpf = cpf;
         this.endereco = endereco;
@@ -41,10 +40,10 @@ public class Aluno {
         this.endereco = endereco;
     }
 
-    public Date getDataNasc() {
+    public String getDataNasc() {
         return dataNasc;
     }
-    public void setDataNasc(Date dataNasc) {
+    public void setDataNasc(String dataNasc) {
         this.dataNasc = dataNasc;
     }
 
