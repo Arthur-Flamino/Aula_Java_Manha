@@ -41,11 +41,11 @@ public class Exercicio {
 
         for (String string : lista) {
             String[] partes = string.split(";");
-            System.out.println("=========================================");
+            System.out.println("/-----------------------------------------\\");
             System.out.println("Posição: " + posicao);
             System.out.println("Nome: " + partes[0]);
             System.out.println("Equipamento utilizado: " + partes[1]);
-            System.out.println("=========================================");
+            System.out.println("\\-----------------------------------------/\n");
             posicao++;
         }
     }

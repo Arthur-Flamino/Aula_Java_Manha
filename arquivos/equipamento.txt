@@ -1,0 +1,4 @@
+leg;prena;leg;Academia.De.Trabalho.Classes.Equipamento@3941a79c;
+perna;Academia.De.Trabalho.Classes.Equipamento@3941a79c;
+halter;braco;
+ahhh;merda;

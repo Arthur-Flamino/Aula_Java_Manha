@@ -1,1 +1,10 @@
-art;art;
+arth;Academia.De.Trabalho.Classes.Equipamento@3941a79c;
+fe;Academia.De.Trabalho.Classes.Equipamento@79fc0f2f;
+braco;Academia.De.Trabalho.Classes.Equipamento@6f539caf;
+sss;Academia.De.Trabalho.Classes.Equipamento@3941a79c;
+ttt;Academia.De.Trabalho.Classes.Equipamento@3941a79c;
+ttt;Academia.De.Trabalho.Classes.Equipamento@3941a79c;
+��;Academia.De.Trabalho.Classes.Equipamento@3941a79c;
+kkk;Academia.De.Trabalho.Classes.Equipamento@79fc0f2f;
+treino;Academia.De.Trabalho.Classes.Equipamento@3941a79c;
+ju;Academia.De.Trabalho.Classes.Equipamento@3941a79c;

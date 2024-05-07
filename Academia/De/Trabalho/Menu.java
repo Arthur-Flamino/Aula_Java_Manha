@@ -3,6 +3,7 @@ package Academia.De.Trabalho;
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.List;
 import java.util.Scanner;
 
 import Academia.De.Trabalho.Classes.Aluno;
@@ -21,6 +22,20 @@ public class Menu {
         FileManager.criarDiretorio(caminho);
 
         menu();
+    }
+
+    public static boolean validarCPF(String cpf){
+        if(!cpf.matches("\\d{11}")){
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean validarTelefone(String telefone){
+        if (!telefone.matches("\\d{8}| \\d{9}")) {
+            return false;
+        }
+        return true;
     }
 
     public static void menu() throws IOException, ParseException{
@@ -98,8 +113,12 @@ public class Menu {
                     System.out.print("Digite seu nome: ");
                     String nome = scan.nextLine();
     
-                    System.out.print("(000.000.000-00)nesse formato\nDigite seu CPF: ");
+                    System.out.print("(00000000000)nesse formato\nDigite seu CPF: ");
                     String cpf = scan.nextLine();
+                    if (!validarCPF(cpf)) {
+                        System.out.println("CPF com poucos caracteres");
+                        break;
+                    }
                     
                     System.out.print("Digite seu endereço: ");
                     String endereco = scan.nextLine();
@@ -107,8 +126,12 @@ public class Menu {
                     System.out.print("(dd/MM/yyyy)nesse formato\nDigite sua Data de nascimento: ");
                     String dataNasc = scan.nextLine();
     
-                    System.out.print("(0000-0000)nesse formato\nDigite seu número de telefone: ");
+                    System.out.print("(00000000 com 8 ou 9 números)nesse formato\nDigite seu número de telefone: ");
                     String telefone = scan.nextLine();
+                    if (!validarTelefone(telefone)) {
+                        System.out.println("telefone com poucos caracteres");
+                        break;
+                    }
     
                     Aluno aluno = new Aluno(nome, cpf, endereco, dataNasc, telefone);
                     aluno.cadastrarAluno(arquivoAluno);
@@ -249,14 +272,26 @@ public class Menu {
                         System.out.print("Escolha o equipamento para adicionar: ");
                         int escolha = Integer.parseInt(scan.nextLine());
 
-                        String equi = FileManager.lerArquivo(arquivoEquipamento).get(escolha - 1);
+                        List<String> equipamentos = FileManager.lerArquivo(arquivoEquipamento);
+                        if (escolha <= 0 && escolha >= equipamentos.size()) {
+                            System.out.println("Escolha invalida");
+                            return;
+                        }
+                        String equi = equipamentos.get(escolha - 1);
                         String [] dados = equi.split(";");
 
-                        String nomeEqui = dados[0];
-                        String funcaoEqui = dados[1];
+                        if (dados.length >= 2) {
+                            String nomeEqui = dados[0];
+                            String funcaoEqui = dados[1];
 
-                        Equipamento equipamento = new Equipamento(nomeEqui, funcaoEqui);
-                        System.out.println("Execicio cadastrado");
+                            Equipamento equipamento = new Equipamento(nomeEqui, funcaoEqui);
+                            Exercicio exercicio = new Exercicio(nome, equipamento);
+                            exercicio.cadastrarExercicio(arquivoExercicio);
+    
+                            System.out.println("Exercicio cadastrado");
+                        }else{
+                            System.out.println("Dados insuficientes para criar o exercício ");
+                        }
                         break;
                     case 2:
                         Exercicio.mostrarExercicio(arquivoExercicio);

@@ -54,13 +54,13 @@ public class Instrutor {
 
         for (String string : lista) {
             String[] partes = string.split(";");
-            System.out.println("=========================================");
+            System.out.println("/-----------------------------------------\\");
             System.out.println("Posição: " + posicao);
             System.out.println("Nome: " + partes[0]);
             System.out.println("CPF: " + partes[1]);
             System.out.println("Salario: " + partes[2]);
             System.out.println("Expecialidade: " + partes[3]);
-            System.out.println("=========================================");
+            System.out.println("\\-----------------------------------------/\n");
             posicao++;
         }
     }
