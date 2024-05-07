@@ -3,12 +3,11 @@ package Academia.De.Trabalho;
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Scanner;
 
 import Academia.De.Trabalho.Classes.Aluno;
 import Academia.De.Trabalho.Classes.Equipamento;
+import Academia.De.Trabalho.Classes.Exercicio;
 import Academia.De.Trabalho.Classes.FileManager;
 import Academia.De.Trabalho.Classes.Instrutor;
 
@@ -21,21 +20,10 @@ public class Menu {
         File caminho = new File("./arquivos");
         FileManager.criarDiretorio(caminho);
 
-        escolhaMenu();
+        menu();
     }
 
-    public static void mostrarMenu(){
-        System.out.println("--------- Menu ---------");
-        System.out.println("[1] Treino");
-        System.out.println("[2] Aluno");
-        System.out.println("[3] Instrutor");
-        System.out.println("[4] Equipamento");
-        System.out.println("[0] Sair");
-        System.out.println("------------------------");
-        System.out.print("\nEscolha uma ação: ");
-    }
-
-    public static void escolhaMenu() throws IOException, ParseException{
+    public static void menu() throws IOException, ParseException{
         Scanner scan = new Scanner(System.in);
 
         File arquivoTreino = new File("./arquivos/treino.txt");
@@ -46,11 +34,21 @@ public class Menu {
         FileManager.criarArquivo(arquivoInstrutor);
         File arquivoEquipamento = new File("./arquivos/equipamento.txt");
         FileManager.criarArquivo(arquivoEquipamento);
+        File arquivoExercicio = new File("./arquivos/exercicio.txt");
+        FileManager.criarArquivo(arquivoExercicio);
 
         int escolha = 7;
 
         do {
-            mostrarMenu();
+            System.out.println("--------- Menu ---------");
+            System.out.println("[1] Treino");
+            System.out.println("[2] Aluno");
+            System.out.println("[3] Instrutor");
+            System.out.println("[4] Equipamento");
+            System.out.println("[5] Exercicio");
+            System.out.println("[0] Sair");
+            System.out.println("------------------------");
+            System.out.print("\nEscolha uma ação: ");
 
             escolha = Integer.parseInt(scan.nextLine());
             switch (escolha) {
@@ -69,6 +67,9 @@ public class Menu {
                 case 4:
                     menuEquipamento(scan, arquivoEquipamento);
                     break;
+                case 5:
+                    menuExercicios(scan, arquivoExercicio, arquivoEquipamento);
+                    break;
                 default:
                     System.out.println("Opção invalida!");
                     break;
@@ -76,7 +77,7 @@ public class Menu {
         } while (escolha !=0);
     }
 
-    public static void menuAluno(Scanner scan, File arquivoAluno) throws IOException, ParseException{
+    public static void menuAluno(Scanner scan, File arquivoAluno) throws IOException{
         int escolhaAluno;
 
         do {
@@ -104,11 +105,9 @@ public class Menu {
                     String endereco = scan.nextLine();
     
                     System.out.print("(dd/MM/yyyy)nesse formato\nDigite sua Data de nascimento: ");
-                    String data = scan.nextLine();
-                    SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-                    Date dataNasc = formato.parse(data);
+                    String dataNasc = scan.nextLine();
     
-                    System.out.print("(0000-0000)nesse formato\nDigite seu número: ");
+                    System.out.print("(0000-0000)nesse formato\nDigite seu número de telefone: ");
                     String telefone = scan.nextLine();
     
                     Aluno aluno = new Aluno(nome, cpf, endereco, dataNasc, telefone);
@@ -225,4 +224,54 @@ public class Menu {
             }
         } while (escolhaEquipamento != 0);
     }
-}
+
+        public static void menuExercicios(Scanner scan, File arquivoExercicio, File arquivoEquipamento) throws IOException{
+            int escolhaExercicio;
+            do {
+                System.out.println("--------- EXERCICIO ---------");
+                System.out.println("[1] Cadastrar Exercicio");
+                System.out.println("[2] Ver Exercicio(s)");
+                System.out.println("[3] Excluir Exercicio");
+                System.out.println("[0] Sair");
+                System.out.println("-----------------------------");
+                System.out.print("\nEscolha uma ação: ");
+                escolhaExercicio = Integer.parseInt(scan.nextLine());
+
+                switch (escolhaExercicio) {
+                    case 0:
+                    System.out.println("Voltando para menu");
+                        break;
+                    case 1:
+                        System.out.print("Digite o nome do exercicio: ");
+                        String nome = scan.nextLine();
+
+                        Equipamento.mostrarEquipamento(arquivoEquipamento);
+                        System.out.print("Escolha o equipamento para adicionar: ");
+                        int escolha = Integer.parseInt(scan.nextLine());
+
+                        String equi = FileManager.lerArquivo(arquivoEquipamento).get(escolha - 1);
+                        String [] dados = equi.split(";");
+
+                        String nomeEqui = dados[0];
+                        String funcaoEqui = dados[1];
+
+                        Equipamento equipamento = new Equipamento(nomeEqui, funcaoEqui);
+                        System.out.println("Execicio cadastrado");
+                        break;
+                    case 2:
+                        Exercicio.mostrarExercicio(arquivoExercicio);
+                        break;
+                    case 3:
+                        Exercicio.mostrarExercicio(arquivoExercicio);
+                        System.out.println("Digite a posição do equipamento para DELETAR:");
+                        int posicao = Integer.parseInt(scan.nextLine())-1;
+                        FileManager.deletarItem(arquivoExercicio, posicao);
+                        break;
+                    default:
+                    System.out.println("Opção invalida!");
+                        break;
+                }
+            } while (escolhaExercicio != 0);
+        }
+    }
+

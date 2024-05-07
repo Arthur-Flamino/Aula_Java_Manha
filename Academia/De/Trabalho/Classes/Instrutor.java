@@ -49,10 +49,10 @@ public class Instrutor {
     }
 
     public static void mostrarInstrutor(File arquivo) throws IOException{
-        ArrayList<String> resultado = FileManager.lerArquivo(arquivo);
+        ArrayList<String> lista = FileManager.lerArquivo(arquivo);
         int posicao =1;
 
-        for (String string : resultado) {
+        for (String string : lista) {
             String[] partes = string.split(";");
             System.out.println("=========================================");
             System.out.println("Posição: " + posicao);

@@ -1,17 +1,20 @@
 package Academia.De.Trabalho.Classes;
 
+import java.io.File;
+import java.io.IOException;
+
 public class Treino {
     
     private Aluno aluno;
     private Instrutor instrutor;
-    private Equipamento equipamento;
+    private Exercicio exercicio;
     private String data;
 
 
-    public Treino(Aluno aluno, Instrutor instrutor, Equipamento equipamento, String data) {
+    public Treino(Aluno aluno, Instrutor instrutor, Exercicio exercicio, String data) {
         this.aluno = aluno;
         this.instrutor = instrutor;
-        this.equipamento = equipamento;
+        this.exercicio = exercicio;
         this.data = data;
     }
 
@@ -21,8 +24,8 @@ public class Treino {
     public Instrutor getInstrutor() {
         return instrutor;
     }
-    public Equipamento getEquipamento() {
-        return equipamento;
+    public Exercicio getExercicio() {
+        return exercicio;
     }
     public String getData() {
         return data;
@@ -30,6 +33,14 @@ public class Treino {
     public void setData(String data) {
         this.data = data;
     }
+
+    public void cadastrarTreino(File arquivo) throws IOException{
+        if (!arquivo.exists()) {
+            FileManager.criarArquivo(arquivo);
+        }
+        FileManager.escreverArquivo(arquivo, this.aluno + ";" + this.instrutor + ";" + this.exercicio + ";" + this.data + ";", true);
+    }
+
 
     
 }
