@@ -10,6 +10,7 @@ public class Instrutor {
     private Double salario;
     private String expecialidade;
 
+    // Construtor da classe Instrutor
     public Instrutor(String nome, String cpf, Double salario, String expecialidade) {
         this.nome = nome;
         this.cpf = cpf;
@@ -17,6 +18,7 @@ public class Instrutor {
         this.expecialidade = expecialidade;
     }
 
+    // Getters e setters para as variáveis de instância
     public String getNome() {
         return nome;
     }
@@ -41,17 +43,23 @@ public class Instrutor {
         return salario;
     }
 
+    // Método para cadastrar um instrutor em um arquivo
     public void cadastrarInstrutor(File arquivo) throws IOException{
+        // Verifica se o arquivo não existe e, se não, cria um novo arquivo
         if (!arquivo.exists()) {
             FileManager.criarArquivo(arquivo);
         }
+        // Escreve os dados do intrutor no arquivo
         FileManager.escreverArquivo(arquivo, this.nome + ";" + this.cpf + ";" + this.salario + ";" + this.expecialidade + ";", true);
     }
 
+    // Método estático para mostrar os intrutor a partir de um arquivo
     public static void mostrarInstrutor(File arquivo) throws IOException{
+        // Lê os dados do arquivo para uma lista
         ArrayList<String> lista = FileManager.lerArquivo(arquivo);
         int posicao =1;
 
+        // Itera sobre cada linha da lista e imprime os detalhes do instrutor
         for (String string : lista) {
             String[] partes = string.split(";");
             System.out.println("/-----------------------------------------\\");

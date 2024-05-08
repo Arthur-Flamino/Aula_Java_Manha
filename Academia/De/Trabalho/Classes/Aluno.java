@@ -11,6 +11,7 @@ public class Aluno {
     private String dataNasc;
     private String telefone;
 
+     // Construtor da classe Aluno
     public Aluno(String nome, String cpf, String endereco, String dataNasc, String telefone) {
         this.nome = nome;
         this.cpf = cpf;
@@ -19,6 +20,7 @@ public class Aluno {
         this.telefone = telefone;
     }
 
+    // Getters e setters para as variáveis de instância
     public String getNome() {
         return nome;
     }
@@ -54,17 +56,23 @@ public class Aluno {
         this.telefone = telefone;
     }
     
+     // Método para cadastrar um aluno em um arquivo
     public void cadastrarAluno(File arquivo) throws IOException{
+        // Verifica se o arquivo não existe e, se não, cria um novo arquivo
         if (!arquivo.exists()) {
             FileManager.criarArquivo(arquivo);
         }
+        // Escreve os dados do aluno no arquivo
         FileManager.escreverArquivo(arquivo, this.nome + ";" + this.cpf + ";" + this.endereco + ";" + this.dataNasc + ";" + this.telefone, true);
     }
 
+    // Método estático para mostrar os alunos a partir de um arquivo
     public static void mostrarAluno(File arquivo) throws IOException{
+        // Lê os dados do arquivo para uma lista
         ArrayList<String> lista = FileManager.lerArquivo(arquivo);
         int posicao =1;
 
+        // Itera sobre cada linha da lista e imprime os detalhes do aluno
         for (String string : lista) {
             String[] partes = string.split(";");
             System.out.println("/-----------------------------------------\\");

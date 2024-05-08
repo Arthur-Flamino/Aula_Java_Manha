@@ -9,36 +9,41 @@ import java.util.ArrayList;
 
 public class FileManager {
     
+    // Cria um diretório se ele não existir
     public static void criarDiretorio(File arquivo) throws IOException {
         if(!arquivo.exists()) {
             arquivo.mkdir();
         }
     }
 
-     public static void criarArquivo(File arquivo) throws IOException {
+    // Cria um arquivo se ele não existir
+    public static void criarArquivo(File arquivo) throws IOException {
         if(!arquivo.exists()) {
             arquivo.createNewFile();
         }
     }
 
+    // Deleta um arquivo se ele existir
     public static void deletarArquivo(File arquivo) throws IOException {
         if(arquivo.exists()) {
             arquivo.delete();
         }
     }
 
+    // Escreve no arquivo
     public static void escreverArquivo(File arquivo, String texto, boolean append) throws IOException {
         if (!arquivo.exists()) {
             criarArquivo(arquivo);
         }
-        FileWriter writer = new FileWriter(arquivo, append); 
+        FileWriter writer = new FileWriter(arquivo, append);
         writer.write(texto);
         writer.write("\n");
         writer.flush();
-        writer.close(); 
+        writer.close();
     }
     
 
+    // Lê as linhas do arquivo e retorna como ArrayList de strings
     public static ArrayList<String> lerArquivo(File arquivo) throws IOException {
         criarArquivo(arquivo);
         FileReader fileReader = new FileReader(arquivo);
@@ -56,6 +61,7 @@ public class FileManager {
         return resultado;
     }
 
+    // Deleta um item do arquivo na posição especificada
     public static void deletarItem(File arquivo, int posicao) throws IOException {
         ArrayList<String> linhas = lerArquivo(arquivo);
 

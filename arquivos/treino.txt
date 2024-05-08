@@ -1,0 +1,2 @@
+Marcio;Rafael;Barra fixa;
+Diego;Fabio;leg press com pes altos;

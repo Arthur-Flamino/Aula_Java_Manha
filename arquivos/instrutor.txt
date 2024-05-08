@@ -1,0 +1,2 @@
+Rafael;32165498732;780.0;Superior;
+Fabio;78912345698;800.0;Inferior;
